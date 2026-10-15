@@ -20,7 +20,7 @@ Quelle: GitHub `grafitecture/raumrent` · Hosting: Vercel · Pflege: per Prompt 
 | `downloads/` | Allgemeine Mietbedingungen (AMB) und Verkaufs- und Lieferbedingungen (AVLB) als PDF |
 | `vercel.json` | Saubere Adressen ohne `.html`, Weiterleitungen alter WordPress-Adressen, Sicherheits-Header, Zwischenspeicher |
 | `sitemap.xml`, `robots.txt` | Für Suchmaschinen |
-| `tools/` | Bild-Werkzeug und Originalbilder – wird **nicht** veröffentlicht (`.vercelignore`) |
+| `tools/` | Bild-Werkzeug, Vorschau-Werkzeug und Originalbilder – wird **nicht** veröffentlicht (`.vercelignore`) |
 
 ## Gemeinsame Teile
 
@@ -105,6 +105,14 @@ Dann http://localhost:8000 öffnen.
 3. Erst nach Abnahme: *Settings → Domains* → `raumrent.de` und `www.raumrent.de` hinzufügen und die angezeigten DNS-Einträge beim Domain-Anbieter eintragen. `www.raumrent.de` ist die Hauptadresse (siehe `canonical` im HTML).
 
 Nach Änderungen an `site.css` oder `site.js` die Versionsnummer `?v=1` in allen HTML-Dateien hochzählen, damit Browser sofort die neue Fassung laden.
+
+## Vorschau in der Claude-Seitenleiste
+
+Neben der Live-Seite gibt es eine Vorschau als Artifact in claude.ai, angeheftet in der Seitenleiste:
+https://claude.ai/artifact/QXTXUck9XYCFmckxJEQVko
+
+`node tools/vorschau.mjs` baut sie aus dem Repo nach `tools/vorschau/` (nicht im Git): Unterseiten als `kontakt.html` usw., alle Pfade relativ, alle Verweise geprüft. Claude veröffentlicht den Ordner danach unter derselben Adresse (Ablauf in `CLAUDE.md`).
+Die PDFs öffnet die Vorschau über ihre bisherigen öffentlichen Adressen in einem neuen Tab, weil Chrome PDFs im Artifact-Rahmen nicht anzeigt. Telefon- und Mail-Links und das Mailprogramm beim Absenden des Formulars öffnen sich in der Vorschau nicht immer. Der Anfragetext zum Kopieren erscheint trotzdem.
 
 ## Weiterleitungen alter Adressen
 

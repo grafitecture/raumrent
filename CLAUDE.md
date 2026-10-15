@@ -17,6 +17,14 @@ Details zu Aufbau, Design-System, Bildern und Deployment: `README.md`.
 - Neue Seite: Ordner mit `index.html` anlegen (Vorlage: eine Container-Unterseite), in Navigation, Fuß und `sitemap.xml` eintragen.
 - Kein Tracking, keine externen Schriften/Skripte/Embeds ohne Rücksprache (sonst braucht die Seite einen Cookie-Banner und eine neue Datenschutzerklärung). Die Content-Security-Policy in `vercel.json` erlaubt nur eigene Dateien.
 
+## Vorschau in der Claude-Seitenleiste
+
+Die Seite ist zusätzlich als Artifact „raumrent.de“ veröffentlicht und in der Seitenleiste von claude.ai angeheftet: https://claude.ai/artifact/QXTXUck9XYCFmckxJEQVko
+Nach jeder Änderung an Seiten, CSS, JS oder Bildern die Vorschau aktualisieren:
+
+1. `node tools/vorschau.mjs` – baut `tools/vorschau/` (nicht im Git) und prüft alle Verweise.
+2. Das Artifact einmal lesen (`action: read` mit der URL oben), dann veröffentlichen: dieselbe `url`, `file_path: tools/vorschau/index.html`, `root: tools/vorschau`, als `files` alle Einträge aus `tools/vorschau/files.json`. Ohne `url` entsteht ein zweites Artifact.
+
 ## Prüfen vor dem Commit
 
 1. `python3 -m http.server 8000` und die geänderten Seiten bei 390 px, 768 px, 1280 px und 1440 px Breite ansehen.

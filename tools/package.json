@@ -4,7 +4,8 @@
   "type": "module",
   "description": "Hilfsskripte für raumrent.de (nur lokal, nicht Teil der Website)",
   "scripts": {
-    "bilder": "node build-images.mjs"
+    "bilder": "node build-images.mjs",
+    "vorschau": "node vorschau.mjs"
   },
   "dependencies": {
     "sharp": "^0.35.4"
