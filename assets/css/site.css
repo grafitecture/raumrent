@@ -101,6 +101,10 @@ a:hover{color:var(--blue-deep)}
 .sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .skip-link{position:absolute;left:var(--gutter);top:-4rem;z-index:100;background:var(--ink);color:#fff;padding:.75em 1em;font-weight:600;font-size:var(--fs-p)}
 .skip-link:focus{top:var(--space-2xs);color:#fff}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.l-a{fill:var(--logo-a)}
+.l-b{fill:var(--logo-b)}
+.l-c{fill:var(--logo-c)}
 .icon{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:square;stroke-linejoin:miter}
 
 /* 4 ─ Layout */
