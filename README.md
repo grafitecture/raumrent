@@ -108,11 +108,13 @@ Nach Änderungen an `site.css` oder `site.js` die Versionsnummer `?v=1` in allen
 
 ## Vorschau in der Claude-Seitenleiste
 
-Neben der Live-Seite gibt es eine Vorschau als Artifact in claude.ai, angeheftet in der Seitenleiste:
+Neben der Live-Seite gibt es eine Vorschau als Artifact in claude.ai. Sie ist in der Seitenleiste angeheftet und zum Teilen mit dem Kunden gedacht:
 https://claude.ai/artifact/QXTXUck9XYCFmckxJEQVko
 
-`node tools/vorschau.mjs` baut sie aus dem Repo nach `tools/vorschau/` (nicht im Git): Unterseiten als `kontakt.html` usw., alle Pfade relativ, alle Verweise geprüft. Claude veröffentlicht den Ordner danach unter derselben Adresse (Ablauf in `CLAUDE.md`).
+`node tools/vorschau.mjs` baut daraus **eine** Datei `tools/vorschau/index.html` (nicht im Git). Sie enthält alle acht Seiten, umgeschaltet über Anker (`#buerocontainer`, `#kontakt` …). CSS, JavaScript, Schrift und Bilder sind eingebettet (WebP, je Motiv einmal). Oben steht ein schmaler Hinweis „Vorschau der neuen Website · Stand …“. Nur eine einzelne Seite lässt sich öffentlich teilen: Die erste Fassung aus 130 Einzeldateien konnte nicht für die öffentliche Freigabe geprüft werden. Claude veröffentlicht die Datei unter derselben Adresse (Ablauf in `CLAUDE.md`).
 Die PDFs öffnet die Vorschau über ihre bisherigen öffentlichen Adressen in einem neuen Tab, weil Chrome PDFs im Artifact-Rahmen nicht anzeigt. Telefon- und Mail-Links und das Mailprogramm beim Absenden des Formulars öffnen sich in der Vorschau nicht immer. Der Anfragetext zum Kopieren erscheint trotzdem.
+
+**Teilen:** Artifact öffnen → *Teilen* → unter *Geteilte Version* die neueste Version wählen → öffentlichen Link kopieren. Nach jeder neuen Version dort die Version wechseln, sonst sieht der Kunde die alte.
 
 ## Weiterleitungen alter Adressen
 

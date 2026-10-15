@@ -19,11 +19,12 @@ Details zu Aufbau, Design-System, Bildern und Deployment: `README.md`.
 
 ## Vorschau in der Claude-Seitenleiste
 
-Die Seite ist zusätzlich als Artifact „raumrent.de“ veröffentlicht und in der Seitenleiste von claude.ai angeheftet: https://claude.ai/artifact/QXTXUck9XYCFmckxJEQVko
+Die Seite ist zusätzlich als Artifact „raumrent.de“ veröffentlicht, in der Seitenleiste von claude.ai angeheftet und zum Teilen mit dem Kunden gedacht: https://claude.ai/artifact/QXTXUck9XYCFmckxJEQVko
 Nach jeder Änderung an Seiten, CSS, JS oder Bildern die Vorschau aktualisieren:
 
-1. `node tools/vorschau.mjs` – baut `tools/vorschau/` (nicht im Git) und prüft alle Verweise.
-2. Das Artifact einmal lesen (`action: read` mit der URL oben), dann veröffentlichen: dieselbe `url`, `file_path: tools/vorschau/index.html`, `root: tools/vorschau`, als `files` alle Einträge aus `tools/vorschau/files.json`. Ohne `url` entsteht ein zweites Artifact.
+1. `node tools/vorschau.mjs` – baut die ganze Website als **eine** Datei `tools/vorschau/index.html` (nicht im Git) und prüft alle Verweise.
+2. Das Artifact einmal lesen (`action: read` mit der URL oben), dann veröffentlichen: dieselbe `url`, `file_path: tools/vorschau/index.html`, **ohne** `files`. Nur eine einzelne Seite lässt sich öffentlich teilen. Ohne `url` entsteht ein zweites Artifact.
+3. Dem Nutzer sagen: Im Teilen-Menü des Artifacts unter „Geteilte Version“ die neue Version wählen, sonst sieht der Kunde weiter die alte.
 
 ## Prüfen vor dem Commit
 
