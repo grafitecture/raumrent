@@ -1,0 +1,12 @@
+{
+  "name": "raumrent-tools",
+  "private": true,
+  "type": "module",
+  "description": "Hilfsskripte für raumrent.de (nur lokal, nicht Teil der Website)",
+  "scripts": {
+    "bilder": "node build-images.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.35.4"
+  }
+}
