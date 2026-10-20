@@ -197,8 +197,9 @@ a:hover{color:var(--blue-deep)}
 .hero__body{display:grid;gap:var(--space-m)}
 @media (min-width:64em){.hero__body{grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-xl);align-items:start}}
 
-/* Der blaue „Aufkleber“: Quadrat wie auf den Containern, Größe folgt der Schrift */
-.sticker{--overlap:2.1em;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;gap:1em;width:max-content;max-width:100%;aspect-ratio:1;margin-top:calc(-1 * var(--overlap));padding:.42em .5em .5em;font-size:var(--fs-h2);color:#fff;background:var(--blue);border-radius:.035em}
+/* Der blaue „Aufkleber“: Quadrat wie auf den Containern, Größe folgt der Schrift.
+   min-width hält die Kante bei 6.86em (so breit wie früher „quadratisch,“), auch wenn der Claim kürzer ist */
+.sticker{--overlap:2.1em;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;gap:1em;width:max-content;min-width:6.86em;max-width:100%;aspect-ratio:1;margin-top:calc(-1 * var(--overlap));padding:.42em .5em .5em;font-size:var(--fs-h2);color:#fff;background:var(--blue);border-radius:.035em}
 @media (min-width:48em){.sticker{--overlap:3.1em}}
 .sticker__brand{font-size:var(--fs-h6);font-weight:600;line-height:1.2;letter-spacing:0}
 .sticker__claim{font-size:var(--fs-h2);font-weight:700;line-height:1.02;letter-spacing:-.03em}

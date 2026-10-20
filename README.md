@@ -71,9 +71,13 @@ Weil Schrift und Abstände fließend mitwachsen, reichen fünf Umbrüche. Sie st
 
 Alle Bilder sind mit **Higgsfield AI** erzeugt (Modell Nano Banana 2.1) und im Fuß als „KI-generierte Beispieldarstellungen“ gekennzeichnet. Einheitlicher Look über einen festen Stil-Baustein, der jedem Motiv-Prompt angehängt wird:
 
-> Eye-level architectural photograph, 24mm tilt-shift lens, perfectly straight verticals. Soft, even late-morning daylight under a pale high-overcast sky with a faint cool blue tint, gentle soft shadows. Cool neutral color grade, muted palette of light grey, white and deep blue, crisp detail, minimal and orderly composition with generous negative space. No people, no text, no logos, no signage, no lettering, no watermark.
+> Eye-level architectural photograph, 24mm tilt-shift lens, perfectly straight verticals. Soft, even late-morning daylight under a pale high-overcast sky with a faint cool blue tint, gentle soft shadows. Cool neutral color grade, muted palette of light grey, white and cool grey, crisp detail, minimal and orderly composition with generous negative space. No people, no text, no logos, no signage, no lettering, no watermark.
 
-Container immer als: *light grey corrugated steel wall panels, deep gentian-blue steel frames and corner posts, white window frames.*
+Container immer als: *light grey corrugated steel wall panels, steel frames and corner posts in the same light grey (RAL 7035), white window frames – containers uniformly light grey, no blue.*
+
+**Seit 20.10.2026 sind alle Container einheitlich grau** (vorher blaue Rahmen und teils blaue Seecontainer). Die 17 Motive der Website wurden dafür nicht neu erzeugt, sondern mit Higgsfield umgefärbt (Nano Banana 2.1, Bildbearbeitung mit dem bisherigen Bild als Referenz). Danach wurden nur die umgefärbten Containerteile ins Original übernommen, alles andere ist pixelgleich geblieben. Die neuen Dateien heißen `<name>-grau`. Die blauen Fassungen liegen in der Git-Historie (bis Commit 733ac62). `tools/originals/spezialcontainer.jpg` wird auf der Seite nicht verwendet und ist noch blau.
+
+**Vorschaubild für Links** (`assets/img/og-raumrent-2.jpg`, 1200 × 630 px, für `og:image`): Vorlage `tools/og-bild.html` (Ausschnitt aus `hero-grau.jpg`, blauer Aufkleber mit Claim, Schild „raumrent.de“). Datei in Chromium bei 1200 × 630 fotografieren und als JPEG (Qualität 86) unter neuem Namen speichern, dann `og:image` in allen 9 HTML-Dateien und `image` im JSON-LD der Startseite anpassen.
 
 **Neues Bild einbinden**
 

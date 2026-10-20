@@ -8,6 +8,7 @@ Details zu Aufbau, Design-System, Bildern und Deployment: `README.md`.
 
 - **Texte:** Wortlaut des Kunden 1:1 übernehmen. Keine eigenen Werbetexte ergänzen oder umformulieren, außer es wird ausdrücklich verlangt. Inhalte und Änderungswünsche kommen von Manuel Loth (manuel.loth@raumrent.de).
 - **Gemeinsame Teile** (Kopfzeile, mobiles Menü, Fuß, SVG-Sprite) stehen in allen 9 HTML-Dateien: `index.html`, `buerocontainer/`, `lager-und-seecontainer/`, `sanitaercontainer/`, `containeranlagen/`, `kontakt/`, `impressum/`, `datenschutz/` (je `index.html`) und `404.html`. Immer in allen Dateien gleich ändern.
+- **Claim** („flexibel & temporär“) steht an vier Stellen: im Aufkleber der Startseite, im Fuß aller 9 Dateien, im JSON-LD der Startseite (`slogan`) und im Vorschaubild für Links (Vorlage `tools/og-bild.html`, siehe README). Immer alle vier ändern.
 - **Schriftgrößen** nur über die Tokens `--fs-h1` … `--fs-xs` bzw. `--fs-input` in `assets/css/site.css` (alle per `clamp()`). Keine festen px-Schriftgrößen.
 - **Breakpoints** nur `30em`, `48em`, `64em`, `80em`, `90em` (min-width). Keine neuen erfinden.
 - **Farben** nur aus den Tokens (`--blue`, `--blue-light`, `--grey`, `--ink`, `--ink-soft`, `--mist`, `--line`). Textkontrast mindestens 4,5:1.
