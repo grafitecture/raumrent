@@ -130,7 +130,8 @@ Das Formular auf `/kontakt` braucht keinen Server: Beim Absenden öffnet sich da
 
 ## Offene Punkte (vor dem Livegang klären)
 
-- **Datenschutzerklärung** ist der alte Wortlaut: Sie nennt Cookies (die neue Seite setzt keine), nicht aber das Hosting bei Vercel und Server-Logdateien; sie verweist noch auf das TMG. Bitte rechtlich aktualisieren lassen.
+- **Datenschutzerklärung:** Hosting bei Vercel und Server-Logfiles sind seit 20.10.2026 ergänzt (Abschnitte 3 und 4). Der übrige Text ist noch der alte Wortlaut: Er nennt Cookies (die neue Seite setzt keine) und eine Anmeldung (gibt es nicht), verweist auf TMG und RStV, und das Beschwerderecht bei einer Aufsichtsbehörde (Art. 77 DSGVO) fehlt. Bitte rechtlich prüfen lassen.
+- **Vercel-Tarif:** Der Vertrag zur Auftragsverarbeitung (DPA), auf den sich die Datenschutzerklärung stützt, gilt bei Vercel nur in den Tarifen Pro und Enterprise. Der Hobby-Tarif ist außerdem nur für private, nicht-kommerzielle Nutzung erlaubt.
 - **Impressum:** Für eine GmbH fehlen Registergericht, Handelsregisternummer und ggf. USt-IdNr.; „§ 55 Abs. 2 RStV“ heißt heute „§ 18 Abs. 2 MStV“. Der Hinweis zur Verbraucherstreitbeilegung ist neu (Wunsch von Manuel Loth) – bitte prüfen lassen.
 - **Anrede:** Die Texte der Unterseiten (Manuel Loth) duzen, Startseite und Rechtstexte siezen.
 - **Fotos:** Echte Projektfotos können die KI-Bilder später ersetzen (gleiches Seitenverhältnis, siehe Bilder).
