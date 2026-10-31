@@ -35,6 +35,7 @@ Links beginnen mit `/` (z. B. `/kontakt`), damit sie auf jeder Seite gleich funk
 - **Farben** (README_RAUMRENT): Blau `#005ca8`, Hellblau `#668fca`, Grau `#a6b3ba`.
   Abgeleitet: Text `#10263d`, Nebentext `#4b5b69`, helle Fläche `#eef2f4`, Linien `#d5dce0`.
   Alle Textfarben erreichen mindestens WCAG AA (4,5:1).
+  Einzige Ausnahme: das Grafitecture-Feld (siehe unten) behält seine eigenen Farben und Größen.
 - **Schrift:** Noto Sans, variabel (100–900).
 - **Leitmotiv:** das Quadrat aus dem Logo. Der blaue „Aufkleber“ in der Startseite wiederholt die Aufkleber auf den Containern; kleine Quadrate markieren Aufzählungen.
 - **Typo-Skala** Perfect Fourth (1.333), jede Schriftgröße per `clamp()` fluide zwischen 360 px und 1440 px Fensterbreite:
@@ -123,6 +124,8 @@ Die PDFs öffnet die Vorschau über ihre bisherigen öffentlichen Adressen in ei
 ## Grafitecture-Feld
 
 Ganz unten in Impressum und Datenschutz steht das Feld der Agentur Grafitecture: Lime-Fläche mit „Entworfen, technisch betreut und weiterentwickelt von“, Logo, „Marken mit KI.“ und Link auf www.grafitecture.de (neues Fenster). Es kommt unverändert aus dem gemeinsamen Kit im Repo `grafitecture/lannee_webseite`, Ordner `kit/grafitecture-credit/` (Version 1.2): Markup aus `snippet.de.html`, CSS als Abschnitt 14 am Ende von `assets/css/site.css`. Höchstens 403 px breit, auf dem Telefon so breit wie die Textspalte.
+
+**Ausnahme von den Gestaltungsregeln:** Die Farben des Feldes (Lime `#dafd55`, Schrift und Logo `#435960`, Linie weiß) und seine Schriftgrößen und Maße gehören der Agentur, nicht raumrent. Sie gelten unverändert, auch wenn sie nicht aus den Tokens dieser Seite kommen. Das Feld nicht an raumrent anpassen; Änderungen nur im Kit machen und dann Markup und Abschnitt 14 hier ersetzen. Einzige Einstellung auf dieser Seite ist der Abstand nach oben (`--gt-credit-space` in Abschnitt 11, eine vom Kit vorgesehene Stellschraube).
 
 ## Weiterleitungen alter Adressen
 
