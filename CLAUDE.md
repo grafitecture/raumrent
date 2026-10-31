@@ -16,6 +16,7 @@ Details zu Aufbau, Design-System, Bildern und Deployment: `README.md`.
 - **Bilder** nie direkt als JPG einbinden: Original nach `tools/originals/`, dann `node tools/build-images.mjs <name>`, im HTML das `<picture>`-Muster mit AVIF + WebP und deutschem `alt`-Text verwenden. Neue Higgsfield-Bilder mit dem Stil-Baustein aus `README.md` erzeugen. Geänderte Bilder unter neuem Dateinamen speichern.
 - Nach Änderungen an `site.css`/`site.js` die Version `?v=` in allen HTML-Dateien hochzählen.
 - Neue Seite: Ordner mit `index.html` anlegen (Vorlage: eine Container-Unterseite), in Navigation, Fuß und `sitemap.xml` eintragen.
+- **Grafitecture-Feld** (Lime-Fläche mit Logo, „Marken mit KI.“, Link auf www.grafitecture.de, neues Fenster): steht immer ganz unten in Impressum und Datenschutz, nach dem Text (`.prose`). Markup = `snippet.de.html`, CSS = Abschnitt 14 in `assets/css/site.css`, beides unverändert aus dem Kit `grafitecture/lannee_webseite` → `kit/grafitecture-credit/` (v1.2). Farben und Schriftgrößen der Agentur sind die einzige Ausnahme von den Token-Regeln. Nicht an raumrent anpassen; bei einer neuen Kit-Version Markup und CSS-Abschnitt ersetzen.
 - Kein Tracking, keine externen Schriften/Skripte/Embeds ohne Rücksprache (sonst braucht die Seite einen Cookie-Banner und eine neue Datenschutzerklärung). Die Content-Security-Policy in `vercel.json` erlaubt nur eigene Dateien.
 
 ## Vorschau in der Claude-Seitenleiste

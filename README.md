@@ -120,6 +120,10 @@ Die PDFs öffnet die Vorschau über ihre bisherigen öffentlichen Adressen in ei
 
 **Teilen:** Artifact öffnen → *Teilen* → unter *Geteilte Version* die neueste Version wählen → öffentlichen Link kopieren. Nach jeder neuen Version dort die Version wechseln, sonst sieht der Kunde die alte.
 
+## Grafitecture-Feld
+
+Ganz unten in Impressum und Datenschutz steht das Feld der Agentur Grafitecture: Lime-Fläche mit „Entworfen, technisch betreut und weiterentwickelt von“, Logo, „Marken mit KI.“ und Link auf www.grafitecture.de (neues Fenster). Es kommt unverändert aus dem gemeinsamen Kit im Repo `grafitecture/lannee_webseite`, Ordner `kit/grafitecture-credit/` (Version 1.2): Markup aus `snippet.de.html`, CSS als Abschnitt 14 am Ende von `assets/css/site.css`. Höchstens 403 px breit, auf dem Telefon so breit wie die Textspalte.
+
 ## Weiterleitungen alter Adressen
 
 `vercel.json` leitet die alten WordPress-PDF-Adressen (`/wp-content/uploads/2025/05/RAUMRENT_AMB.pdf` und `…AVLB.pdf`) auf `downloads/` um, `/wp-sitemap.xml` auf `/sitemap.xml`. `/impressum` und `/datenschutz` behalten ihre Adresse.
