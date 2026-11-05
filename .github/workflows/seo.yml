@@ -32,6 +32,9 @@ jobs:
         run: npm run seo:check
       - name: Lighthouse mobil (lokal)
         run: npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.json
+      - name: Lighthouse-Werte (lokal)
+        if: always()
+        run: node -e "for (const r of require('./lighthouse-reports/manifest.json')) console.log(r.url, JSON.stringify(r.summary))"
       - name: axe (WCAG 2.2 AA, lokal)
         run: |
           npx --yes serve@14 --no-clipboard -l 8081 . > /dev/null 2>&1 &
@@ -47,13 +50,14 @@ jobs:
             http://localhost:8081/datenschutz \
             http://localhost:8081/404.html \
             --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
+            --load-delay 2000 \
             --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" \
             --exit
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lighthouse-lokal
-          path: .lighthouseci-reports
+          path: lighthouse-reports
           if-no-files-found: ignore
 
   live:
@@ -88,6 +92,9 @@ jobs:
       - name: Lighthouse mobil (Produktion)
         if: env.PRODUCTION == 'true'
         run: npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.prod.json
+      - name: Lighthouse-Werte (Produktion)
+        if: always() && env.PRODUCTION == 'true'
+        run: node -e "for (const r of require('./lighthouse-reports/manifest.json')) if (r.isRepresentativeRun) console.log(r.url, JSON.stringify(r.summary))"
       - name: IndexNow (geänderte Adressen)
         if: env.PRODUCTION == 'true'
         run: node scripts/indexnow.mjs
@@ -97,5 +104,5 @@ jobs:
           name: berichte-${{ github.event.deployment.id }}
           path: |
             seo/redirect-report.md
-            .lighthouseci-reports
+            lighthouse-reports
           if-no-files-found: ignore

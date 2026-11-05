@@ -2,4 +2,4 @@
 tools/node_modules/
 tools/vorschau/
 .lighthouseci/
-.lighthouseci-reports/
+lighthouse-reports/

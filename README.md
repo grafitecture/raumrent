@@ -18,8 +18,13 @@ Quelle: GitHub `grafitecture/raumrent` · Hosting: Vercel · Pflege: per Prompt 
 | `assets/fonts/` | Noto Sans, lokal eingebunden (keine Verbindung zu Google) |
 | `assets/logos/`, `assets/icons/`, `favicon.ico`, `apple-touch-icon.png`, `site.webmanifest` | Logo, Favicon, Symbole für den Home-Bildschirm |
 | `downloads/` | Allgemeine Mietbedingungen (AMB) und Verkaufs- und Lieferbedingungen (AVLB) als PDF |
-| `vercel.json` | Saubere Adressen ohne `.html`, Weiterleitungen alter WordPress-Adressen, Sicherheits-Header, Zwischenspeicher |
-| `sitemap.xml`, `robots.txt` | Für Suchmaschinen |
+| `vercel.json` | Saubere Adressen ohne `.html`, Weiterleitungen alter WordPress-Adressen, 410 für entfernte Adressen, Sicherheits-Header, Zwischenspeicher |
+| `api/gone.js` | Antwortet mit „410 Gone“ (Inhalt der 404-Seite) für bewusst entfernte alte Adressen |
+| `sitemap.xml`, `robots.txt` | Für Suchmaschinen und KI-Crawler; die Sitemap erzeugt `npm run seo:sitemap` |
+| `llms.txt` | Kurzbeschreibung der Firma und wichtigste Seiten für KI-Systeme (llmstxt.org) |
+| `.well-known/security.txt` | Kontakt für Meldungen von Sicherheitslücken (jährlich verlängern) |
+| `43cc5470391640f75ffe3bc72ddd5263.txt` | IndexNow-Schlüssel (Bing & Co. über Änderungen informieren), nicht löschen |
+| `seo/`, `scripts/`, `package.json`, `lighthouserc*.json`, `.github/` | Technik-Audit, Redirect-Map, Prüfskripte und CI – werden **nicht** veröffentlicht |
 | `tools/` | Bild-Werkzeug, Vorschau-Werkzeug und Originalbilder – wird **nicht** veröffentlicht (`.vercelignore`) |
 
 ## Gemeinsame Teile
@@ -48,11 +53,11 @@ Links beginnen mit `/` (z. B. `/kontakt`), damit sie auf jeder Seite gleich funk
 | `--fs-h4` | h4 | 1.539rem (24.6 px) | 2.369rem (37.9 px) |
 | `--fs-h5` | h5 | 1.333rem (21.3 px) | 1.777rem (28.4 px) |
 | `--fs-h6` | h6 | 1.155rem (18.5 px) | 1.333rem (21.3 px) |
-| `--fs-p` | p | 0.938rem (15 px) | 1rem (16 px) |
+| `--fs-p` | p | 1rem (16 px) | 1rem (16 px) |
 | `--fs-small` | small | 0.8125rem (13 px) | 0.75rem (12 px) |
 | `--fs-xs` | – | 0.6875rem (11 px) | 0.563rem (9 px) |
 
-Mobil staucht sich die Skala auf halbe Schritte (√1.333): Überschriften werden kleiner, Klein- und Kleinsttext etwas größer, damit sie auf dem Telefon lesbar bleiben. Formularfelder nutzen `--fs-input` (mind. 16 px, sonst zoomt iOS beim Antippen).
+Mobil staucht sich die Skala auf halbe Schritte (√1.333): Überschriften werden kleiner, Klein- und Kleinsttext etwas größer, damit sie auf dem Telefon lesbar bleiben. Fließtext bleibt seit 05.11.2026 auf allen Breiten bei 16 px (vorher mobil 15 px). Formularfelder nutzen `--fs-input` (mind. 16 px, sonst zoomt iOS beim Antippen).
 
 ### Breakpoints
 
@@ -129,7 +134,27 @@ Ganz unten in Impressum und Datenschutz steht das Feld der Agentur Grafitecture:
 
 ## Weiterleitungen alter Adressen
 
-`vercel.json` leitet die alten WordPress-PDF-Adressen (`/wp-content/uploads/2025/05/RAUMRENT_AMB.pdf` und `…AVLB.pdf`) auf `downloads/` um, `/wp-sitemap.xml` auf `/sitemap.xml`. `/impressum` und `/datenschutz` behalten ihre Adresse.
+Alle alten Adressen der WordPress-Seite stehen mit Ziel und Grund in `seo/redirect-map.csv` (Quelle: Wayback-Archiv und Vercel-Zugriffsdaten). Umsetzung in `vercel.json`:
+
+- **Umgezogen (308, ein Hop):** PDFs unter `/wp-content/uploads/2025/05/` → `/downloads/`, alle `/wp-sitemap*.xml` → `/sitemap.xml`, `/index.php` → `/`, `/impressum/` und `/datenschutz/` → ohne Schrägstrich. Ziele sind absolut (`https://www.raumrent.de/…`), damit auch andere Hosts in einem Schritt ankommen.
+- **Schrägstrich am Ende:** eine eigene Regel leitet jede Adresse mit `/` am Ende in einem Hop auf die Fassung ohne um. `trailingSlash` ist bewusst nicht gesetzt, weil Vercel diese Weiterleitung sonst vor den eigenen Regeln ausführt (zwei Hops).
+- **Ersatzlos entfernt (410):** Autorenarchiv `/author/…`, `/sample-page`, alle Feeds, `/wp-admin`, `/wp-json`, `/wp-includes`, übrige `/wp-content`-Dateien und `wp-login.php`/`xmlrpc.php` gehen per Rewrite auf `api/gone.js`.
+- **Hosts:** Regeln für `raumrent.de` (ohne www) und die vercel.app-Aliasse sind vorbereitet. `raumrent.de` läuft derzeit noch über eine Weiterleitung bei IONOS (nicht über Vercel).
+
+Prüfen: `npm run seo:redirects` (gegen www.raumrent.de) oder mit `BASE_URL=…` gegen eine Vorschau.
+
+## SEO, Barrierefreiheit und Prüfungen
+
+| Befehl | Was er tut |
+|---|---|
+| `npm run seo:check` | Prüft alle Dateien ohne Netz: Links, Title, Description, H1, Canonical, Open Graph, JSON-LD, Sitemap, robots.txt, Redirect-Map, security.txt. Muss vor jedem Push grün sein. |
+| `npm run seo:sitemap` | Erzeugt `sitemap.xml`. `lastmod` ändert sich nur, wenn sich Inhalt, Title, Description oder JSON-LD einer Seite geändert haben (Fingerabdruck in `seo/sitemap-state.json`). |
+| `npm run seo:live` | Prüft die Live-Seite: Statuscodes, Header, Indexierbarkeit, Inhalt ohne JavaScript, Such- und KI-Crawler. |
+| `npm run seo:redirects` | Prüft jede Zeile von `seo/redirect-map.csv` gegen die Live-Seite, Ergebnis in `seo/redirect-report.md`. |
+
+Die GitHub Action `.github/workflows/seo.yml` führt bei jedem Push `seo:check`, Lighthouse mobil (≥ 95 in allen Kategorien) und axe aus. Nach jedem Vercel-Deployment prüft sie die Live-Seite; nach Produktions-Deployments zusätzlich Lighthouse gegen www.raumrent.de und IndexNow für geänderte Seiten. Für Prüfungen geschützter Vorschauen braucht das Repository das Secret `VERCEL_AUTOMATION_BYPASS_SECRET`.
+
+Berichte: `seo/AUDIT.md` (Ist-Stand 05.11.2026), `seo/REPORT.md` (Ergebnis), `seo/content-empfehlungen.md` (Vorschläge für Texte, nicht umgesetzt).
 
 ## Anfrage-Formular
 
