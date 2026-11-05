@@ -13,7 +13,7 @@
         "http://localhost:8080/impressum",
         "http://localhost:8080/datenschutz"
       ],
-      "numberOfRuns": 1
+      "numberOfRuns": 3
     },
     "assert": {
       "assertions": {
@@ -72,7 +72,8 @@
           }
         ],
         "canonical": "off"
-      }
+      },
+      "aggregationMethod": "optimistic"
     },
     "upload": {
       "target": "filesystem",

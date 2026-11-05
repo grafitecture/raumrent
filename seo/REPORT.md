@@ -126,7 +126,7 @@ Die neue Seite ist seit 21.10.2026 live, die Umschaltung ist also schon passiert
 - **Redirect-Ziele sind absolut** (`https://www.raumrent.de/…`). Auf Vorschauen führen Weiterleitungen deshalb auf die Live-Seite – gewollt, damit jeder Host in einem Hop ankommt.
 - **410 über eine Vercel Function** (`api/gone.js`): vernachlässigbare Kosten; Antworten werden 1 Tag im CDN zwischengespeichert. Fällt die Function aus, käme 500 statt 410 – `seo:live` prüft `/sample-page` nach jedem Deployment.
 - **Trusted Types** sind erzwungen. Künftiges JavaScript mit `innerHTML` o. Ä. würde blockiert (Regel steht in `CLAUDE.md`).
-- **Lighthouse in der CI** misst gegen einen lokalen Server auf GitHub-Rechnern; Messwerte schwanken. Grenze 95 lässt Luft, ein einzelner Ausreißer kann trotzdem rot werden – dann Lauf wiederholen.
+- **Lighthouse in der CI** misst gegen einen lokalen Server auf GitHub-Rechnern; Messwerte schwanken (ein Lauf am 05.11. hatte auf der Startseite TBT 209 ms / Leistung 94, der Lauf davor 100). Deshalb 3 Läufe je Seite, gewertet wird der beste. Bleibt ein Lauf trotzdem rot, Job wiederholen.
 - **axe** wartet 2 s, weil der blaue Aufkleber auf der Startseite eingeblendet wird (während der Animation ist der Kontrast kurz niedriger; im Endzustand 6,78 : 1).
 - **Titles Sanitär/Containeranlagen** mit 46 Zeichen etwas unter 50 – bewusst knapp statt erfundener Zusätze.
 - **lastmod** steht für alle Seiten auf 05.11.2026, weil sich Meta-Daten und JSON-LD überall geändert haben. Ab jetzt ändert er sich nur bei echten Inhaltsänderungen.

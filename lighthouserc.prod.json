@@ -69,7 +69,8 @@
             "maxNumericValue": 1048576
           }
         ]
-      }
+      },
+      "aggregationMethod": "optimistic"
     },
     "upload": {
       "target": "filesystem",
