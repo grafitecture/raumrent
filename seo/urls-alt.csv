@@ -1,0 +1,24 @@
+url,quelle,klicks,impressionen,backlinks
+https://www.raumrent.de/,Wayback-Archiv (CDX); Vercel-Logs: 200,k. A.,k. A.,k. A.
+https://www.raumrent.de/impressum/,Wayback 16.06.2025; Vercel-Logs 21.10.–05.11.2026: 2× 308,k. A.,k. A.,k. A.
+https://www.raumrent.de/datenschutz/,Wayback 16.06.2025; Vercel-Logs: 1× 308,k. A.,k. A.,k. A.
+https://www.raumrent.de/author/martinschweppe/,Wayback 16.06.2025; Vercel-Logs: 14× 404,k. A.,k. A.,k. A.
+https://www.raumrent.de/author/martinschweppe/feed/,Vercel-Logs: 1× 404,k. A.,k. A.,k. A.
+https://www.raumrent.de/sample-page/,WordPress-Beispielseite; Vercel-Logs: 3× 404,k. A.,k. A.,k. A.
+https://www.raumrent.de/feed/,WordPress-Feed; Vercel-Logs: 21× 308 auf Startseite,k. A.,k. A.,k. A.
+https://www.raumrent.de/comments/feed/,WordPress-Feed; Vercel-Logs: 6× 404,k. A.,k. A.,k. A.
+https://www.raumrent.de/feed/atom/,WordPress-Feed; Vercel-Logs: 2× 404,k. A.,k. A.,k. A.
+https://www.raumrent.de/feed/json/,Vercel-Logs: 1× 404 / 1× 308,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-sitemap.xml,WordPress-Sitemap; Vercel-Logs: 61× 308,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-sitemap-posts-page-1.xml,WordPress-Teilsitemap; Vercel-Logs: 13× 404,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-sitemap-users-1.xml,WordPress-Teilsitemap; Vercel-Logs: 13× 404,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-content/uploads/2025/05/RAUMRENT_AMB.pdf,Wayback 05.12.2025; Vercel-Logs: 7× 308,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-content/uploads/2025/05/RAUMRENT_AVLB.pdf,Wayback 05.12.2025,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-content/uploads/elementor/css/post-19.css,Wayback 30.01.2026 (Elementor-CSS),k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-content/themes/hello-elementor/theme.min.css,Wayback 30.01.2026 (Theme-CSS),k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-content/plugins/elementor/assets/css/widget-heading.min.css,Wayback 30.01.2026 (Plugin-CSS),k. A.,k. A.,k. A.
+https://www.raumrent.de/index.php,bestehende Regel in vercel.json,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-admin/,Bot-Pfad; Vercel-Logs: 12× 308,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-json/,Bot-Pfad; Vercel-Logs: 4× 308,k. A.,k. A.,k. A.
+https://www.raumrent.de/wp-login.php,Bot-Pfad; live 403 (Vercel),k. A.,k. A.,k. A.
+https://www.raumrent.de/xmlrpc.php,Bot-Pfad; live 403 (Vercel),k. A.,k. A.,k. A.
