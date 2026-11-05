@@ -1,0 +1,101 @@
+# SEO- & Technik-Checks für raumrent.de
+#
+# 1. Bei jedem Push (alle Branches): statische Prüfung der Dateien (npm run seo:check),
+#    Lighthouse mobil (≥ 95 in allen Kategorien, Budgets) und axe gegen einen lokalen Server.
+# 2. Nach jedem erfolgreichen Vercel-Deployment (Ereignis deployment_status):
+#    Live-Check und Redirect-Check gegen die Vorschau bzw. www.raumrent.de.
+#    Vorschauen sind durch Vercel geschützt: Dafür das Repository-Secret
+#    VERCEL_AUTOMATION_BYPASS_SECRET setzen (Vercel → Settings → Deployment Protection →
+#    Protection Bypass for Automation). Ohne Secret werden Vorschauen übersprungen.
+# 3. Nur Produktion: Lighthouse gegen www.raumrent.de und IndexNow-Meldung geänderter Adressen.
+name: SEO & Technik
+
+on:
+  push:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dateien:
+    name: Dateien prüfen (seo:check, Lighthouse, axe)
+    if: github.event_name != 'deployment_status'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: seo:check
+        run: npm run seo:check
+      - name: Lighthouse mobil (lokal)
+        run: npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.json
+      - name: axe (WCAG 2.2 AA, lokal)
+        run: |
+          npx --yes serve@14 --no-clipboard -l 8081 . > /dev/null 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://localhost:8081/ > /dev/null && break; sleep 1; done
+          npx --yes @axe-core/cli@4 \
+            http://localhost:8081/ \
+            http://localhost:8081/buerocontainer \
+            http://localhost:8081/lager-und-seecontainer \
+            http://localhost:8081/sanitaercontainer \
+            http://localhost:8081/containeranlagen \
+            http://localhost:8081/kontakt \
+            http://localhost:8081/impressum \
+            http://localhost:8081/datenschutz \
+            http://localhost:8081/404.html \
+            --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
+            --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" \
+            --exit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-lokal
+          path: .lighthouseci-reports
+          if-no-files-found: ignore
+
+  live:
+    name: Live-Checks nach Deployment
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    env:
+      PRODUCTION: ${{ startsWith(github.event.deployment.environment, 'Production') }}
+      BASE_URL: ${{ startsWith(github.event.deployment.environment, 'Production') && 'https://www.raumrent.de' || github.event.deployment_status.target_url }}
+      VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha }}
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Vorschau ohne Zugang?
+        id: gate
+        run: |
+          if [ "$PRODUCTION" != "true" ] && [ -z "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
+            echo "::warning::Vorschau $BASE_URL ist geschützt und das Secret VERCEL_AUTOMATION_BYPASS_SECRET fehlt – Live-Checks übersprungen."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Live-Check (Status, Header, Crawler, Inhalt ohne JS)
+        if: steps.gate.outputs.skip != 'true'
+        run: npm run seo:live
+      - name: Redirect-Check (seo/redirect-map.csv)
+        if: steps.gate.outputs.skip != 'true'
+        run: npm run seo:redirects
+      - name: Lighthouse mobil (Produktion)
+        if: env.PRODUCTION == 'true'
+        run: npx --yes @lhci/cli@0.15.x autorun --config=lighthouserc.prod.json
+      - name: IndexNow (geänderte Adressen)
+        if: env.PRODUCTION == 'true'
+        run: node scripts/indexnow.mjs
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.gate.outputs.skip != 'true'
+        with:
+          name: berichte-${{ github.event.deployment.id }}
+          path: |
+            seo/redirect-report.md
+            .lighthouseci-reports
+          if-no-files-found: ignore

@@ -1,0 +1,14 @@
+{
+  "name": "raumrent-website",
+  "private": true,
+  "description": "Prüf- und Pflegeskripte für raumrent.de – die Website selbst braucht keinen Build",
+  "scripts": {
+    "seo:check": "node scripts/seo-check.mjs",
+    "seo:sitemap": "node scripts/build-sitemap.mjs",
+    "seo:redirects": "node scripts/check-redirects.mjs",
+    "seo:live": "node scripts/check-live.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
