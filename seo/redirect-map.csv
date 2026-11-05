@@ -1,0 +1,31 @@
+alt,neu,status,grund,quelle
+/impressum/,/impressum,308,Alte WordPress-Adresse mit Slash,Wayback; Vercel-Logs
+/datenschutz/,/datenschutz,308,Alte WordPress-Adresse mit Slash,Wayback; Vercel-Logs
+/wp-content/uploads/2025/05/RAUMRENT_AMB.pdf,/downloads/RAUMRENT_AMB.pdf,308,PDF Allgemeine Mietbedingungen umgezogen,Wayback; Vercel-Logs
+/wp-content/uploads/2025/05/RAUMRENT_AVLB.pdf,/downloads/RAUMRENT_AVLB.pdf,308,PDF Verkaufs- und Lieferbedingungen umgezogen,Wayback
+/wp-sitemap.xml,/sitemap.xml,308,WordPress-Sitemap → neue Sitemap,Vercel-Logs
+/wp-sitemap-posts-page-1.xml,/sitemap.xml,308,WordPress-Teilsitemap (Muster /wp-sitemap*.xml),Vercel-Logs
+/wp-sitemap-users-1.xml,/sitemap.xml,308,WordPress-Teilsitemap (Muster /wp-sitemap*.xml),Vercel-Logs
+/index.php,/,308,WordPress-Einstieg,bisherige vercel.json
+/author/martinschweppe,,410,Autorenarchiv ohne Ersatz (Muster /author/*),Wayback; Vercel-Logs
+/author/martinschweppe/,,410,Autorenarchiv ohne Ersatz (Muster /author/*),Wayback
+/author/martinschweppe/feed/,,410,Feed ohne Ersatz,Vercel-Logs
+/sample-page/,,410,WordPress-Beispielseite ohne Inhalt,Vercel-Logs
+/feed,,410,Feed ohne Ersatz (bisher pauschal auf Startseite),Vercel-Logs
+/feed/,,410,Feed ohne Ersatz,Vercel-Logs
+/feed/atom/,,410,Feed ohne Ersatz,Vercel-Logs
+/comments/feed/,,410,Kommentar-Feed ohne Ersatz,Vercel-Logs
+/wp-admin/,,410,WordPress-Systempfad (Muster /wp-admin/*),Vercel-Logs
+/wp-json/,,410,WordPress-Systempfad (Muster /wp-json/*),Vercel-Logs
+/wp-includes/js/jquery/jquery.min.js,,410,WordPress-Systempfad (Muster /wp-includes/*),Muster
+/wp-content/uploads/elementor/css/post-19.css,,410,Elementor-Datei ohne Ersatz (Muster /wp-content/*),Wayback
+/wp-content/themes/hello-elementor/theme.min.css,,410,Theme-Datei ohne Ersatz (Muster /wp-content/*),Wayback
+/wp-login.php,,410|403,WordPress-Anmeldung (Vercel blockt teils vorab mit 403),Bot-Pfad
+/xmlrpc.php,,410|403,WordPress-Schnittstelle (Vercel blockt teils vorab mit 403),Bot-Pfad
+/buerocontainer/,/buerocontainer,308,Slash-Variante (Muster /…/),URL-Schema
+/kontakt/,/kontakt,308,Slash-Variante (Muster /…/),URL-Schema
+/index.html,/,308,Dateiendung (cleanUrls),URL-Schema
+/buerocontainer/index.html,/buerocontainer,308,Dateiendung (cleanUrls),URL-Schema
+/kontakt.html,/kontakt,308,Dateiendung (cleanUrls),URL-Schema
+http://www.raumrent.de/impressum,https://www.raumrent.de/impressum,308,HTTP → HTTPS (Vercel),Plattform
+http://raumrent.de/,https://www.raumrent.de/,301|308,Domain ohne www (IONOS-Weiterleitung),DNS IONOS
