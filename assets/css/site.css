@@ -47,7 +47,8 @@
   --fs-h4:clamp(1.539rem, 1.2623rem + 1.2296vw, 2.369rem);
   --fs-h5:clamp(1.333rem, 1.1850rem + 0.6578vw, 1.777rem);
   --fs-h6:clamp(1.155rem, 1.0957rem + 0.2637vw, 1.333rem);
-  --fs-p:clamp(0.938rem, 0.9173rem + 0.0919vw, 1rem);
+  /* Fließtext auf allen Breiten 16 px (Mindestmaß für Lesbarkeit, seit 05.11.2026; vorher mobil 15 px) */
+  --fs-p:1rem;
   --fs-small:clamp(0.75rem, 0.8327rem - 0.0919vw, 0.8125rem);
   --fs-xs:clamp(0.563rem, 0.7297rem - 0.1852vw, 0.6875rem);
   /* Formularfelder: nie unter 16 px, sonst zoomt iOS beim Antippen */

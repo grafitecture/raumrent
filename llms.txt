@@ -1,0 +1,23 @@
+# raumrent
+
+> raumrent GmbH vermietet und verkauft Container und mobile Raumsysteme: Bürocontainer, Lager- und Seecontainer, Sanitärcontainer und Containeranlagen, mit Lieferung im Umkreis von 150 km um Mannheim. Büro und Lager: Düsseldorfer Str. 29, 68219 Mannheim. Ansprechpartner: Manuel Loth (Prokurist & Vertriebsleiter), +49 176 6461 5361, manuel.loth@raumrent.de.
+
+Miete für kurzfristige Projekte oder Kauf für dauerhafte Nutzung. Einsatz auf Baustellen, in der Industrie, bei Veranstaltungen und als temporäre Büros. Zubehör: Mobiliar, Treppen und Podeste, Containerüberdachungen.
+
+## Container
+
+- [Bürocontainer](https://www.raumrent.de/buerocontainer): Baustellenbüros, temporäre Verwaltungsräume und Büroerweiterungen, mieten oder kaufen
+- [Lager- & Seecontainer](https://www.raumrent.de/lager-und-seecontainer): wind- und wasserdichte, abschließbare Container in 10 ft und 20 ft
+- [Sanitärcontainer](https://www.raumrent.de/sanitaercontainer): WC-, Dusch- und barrierefreie Lösungen, anschlussfertig oder mit Fäkalientank
+- [Containeranlagen](https://www.raumrent.de/containeranlagen): individuell geplante, schlüsselfertige Anlagen aus verbundenen Modulen
+
+## Anfrage
+
+- [Kontakt](https://www.raumrent.de/kontakt): Anfrage mit Containerart, Miete oder Kauf und Kontaktdaten
+
+## Optional
+
+- [Allgemeine Mietbedingungen (PDF)](https://www.raumrent.de/downloads/RAUMRENT_AMB.pdf)
+- [Allgemeine Verkaufs- und Lieferbedingungen (PDF)](https://www.raumrent.de/downloads/RAUMRENT_AVLB.pdf)
+- [Impressum](https://www.raumrent.de/impressum): Raumrent GmbH, Industriestraße 14a, 66740 Saarlouis
+- [Datenschutz](https://www.raumrent.de/datenschutz)
