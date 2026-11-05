@@ -17,7 +17,7 @@ Details zu Aufbau, Design-System, Bildern und Deployment: `README.md`.
 - Nach Änderungen an `site.css`/`site.js` die Version `?v=` in allen HTML-Dateien hochzählen.
 - Neue Seite: Ordner mit `index.html` anlegen (Vorlage: eine Container-Unterseite), in Navigation, Fuß und `PAGES` in `scripts/lib.mjs` eintragen, dann `npm run seo:sitemap` (die Sitemap nie von Hand bearbeiten).
 - **Grafitecture-Feld** (Lime-Fläche mit Logo, „Marken mit KI.“, Link auf www.grafitecture.de, neues Fenster): steht immer ganz unten in Impressum und Datenschutz, nach dem Text (`.prose`). Markup = `snippet.de.html`, CSS = Abschnitt 14 in `assets/css/site.css`, beides unverändert aus dem Kit `grafitecture/lannee_webseite` → `kit/grafitecture-credit/` (v1.2). Farben und Schriftgrößen der Agentur sind die einzige Ausnahme von den Token-Regeln. Nicht an raumrent anpassen; bei einer neuen Kit-Version Markup und CSS-Abschnitt ersetzen.
-- Kein Tracking, keine externen Schriften/Skripte/Embeds ohne Rücksprache (sonst braucht die Seite einen Cookie-Banner und eine neue Datenschutzerklärung). Die Content-Security-Policy in `vercel.json` erlaubt nur eigene Dateien.
+- Kein Tracking, keine externen Schriften/Skripte/Embeds ohne Rücksprache (sonst braucht die Seite einen Cookie-Banner und eine neue Datenschutzerklärung). Die Content-Security-Policy in `vercel.json` erlaubt nur eigene Dateien und erzwingt Trusted Types: in JavaScript kein `innerHTML`, `insertAdjacentHTML`, `document.write` oder `eval`, sondern `textContent` und DOM-Methoden.
 
 ## Vorschau in der Claude-Seitenleiste
 
