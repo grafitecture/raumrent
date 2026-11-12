@@ -1,34 +1,58 @@
 {
   "/": {
-    "hash": "95ba567cd4fc3bd8",
-    "lastmod": "2026-11-05"
+    "hash": "ae2165af1c21c3b8",
+    "lastmod": "2026-11-12"
   },
   "/buerocontainer": {
-    "hash": "c82e0ea326bb5954",
-    "lastmod": "2026-11-05"
+    "hash": "55316a223b61607b",
+    "lastmod": "2026-11-12"
   },
   "/lager-und-seecontainer": {
-    "hash": "8c836e9071ee2fd6",
-    "lastmod": "2026-11-05"
+    "hash": "5261fe005b4289b3",
+    "lastmod": "2026-11-12"
   },
   "/sanitaercontainer": {
-    "hash": "e9c1aa3aa99d9e44",
-    "lastmod": "2026-11-05"
+    "hash": "13698c15ec7fed6d",
+    "lastmod": "2026-11-12"
   },
   "/containeranlagen": {
-    "hash": "427a58af75df6337",
-    "lastmod": "2026-11-05"
+    "hash": "2257e9e16053f9c2",
+    "lastmod": "2026-11-12"
   },
   "/kontakt": {
-    "hash": "fd817277cd65d489",
-    "lastmod": "2026-11-05"
+    "hash": "3a7772133fa41321",
+    "lastmod": "2026-11-12"
   },
   "/impressum": {
-    "hash": "0499c1165c25c8bd",
-    "lastmod": "2026-11-05"
+    "hash": "8e4d8b38ee74a5b0",
+    "lastmod": "2026-11-12"
   },
   "/datenschutz": {
-    "hash": "a51669c727d2003c",
-    "lastmod": "2026-11-05"
+    "hash": "0b197f9aa293df6d",
+    "lastmod": "2026-11-12"
+  },
+  "/en": {
+    "hash": "365fe328624ee5d2",
+    "lastmod": "2026-11-12"
+  },
+  "/en/office-containers": {
+    "hash": "a6455e3f21a32217",
+    "lastmod": "2026-11-12"
+  },
+  "/en/storage-and-shipping-containers": {
+    "hash": "122371a76b662f15",
+    "lastmod": "2026-11-12"
+  },
+  "/en/sanitary-containers": {
+    "hash": "0b06d373baaffdd8",
+    "lastmod": "2026-11-12"
+  },
+  "/en/container-buildings": {
+    "hash": "7a5979548d2200c2",
+    "lastmod": "2026-11-12"
+  },
+  "/en/contact": {
+    "hash": "4b44fec13b9903e3",
+    "lastmod": "2026-11-12"
   }
 }

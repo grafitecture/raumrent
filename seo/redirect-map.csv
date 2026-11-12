@@ -27,5 +27,8 @@ alt,neu,status,grund,quelle
 /index.html,/,308,Dateiendung (cleanUrls),URL-Schema
 /buerocontainer/index.html,/buerocontainer,308,Dateiendung (cleanUrls),URL-Schema
 /kontakt.html,/kontakt,308,Dateiendung (cleanUrls),URL-Schema
+/en/,/en,308,Slash-Variante englische Startseite,URL-Schema
+/en/office-containers/,/en/office-containers,308,Slash-Variante (Muster /…/),URL-Schema
+/en/contact.html,/en/contact,308,Dateiendung (cleanUrls),URL-Schema
 http://www.raumrent.de/impressum,https://www.raumrent.de/impressum,308,HTTP → HTTPS (Vercel),Plattform
 http://raumrent.de/,https://www.raumrent.de/,301|308,Domain ohne www (IONOS-Weiterleitung),DNS IONOS

@@ -9,7 +9,13 @@
         "https://www.raumrent.de/containeranlagen",
         "https://www.raumrent.de/kontakt",
         "https://www.raumrent.de/impressum",
-        "https://www.raumrent.de/datenschutz"
+        "https://www.raumrent.de/datenschutz",
+        "https://www.raumrent.de/en",
+        "https://www.raumrent.de/en/office-containers",
+        "https://www.raumrent.de/en/storage-and-shipping-containers",
+        "https://www.raumrent.de/en/sanitary-containers",
+        "https://www.raumrent.de/en/container-buildings",
+        "https://www.raumrent.de/en/contact"
       ],
       "numberOfRuns": 3
     },

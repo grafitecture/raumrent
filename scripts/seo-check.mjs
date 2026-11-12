@@ -4,12 +4,13 @@
 //
 // Bricht mit Exit-Code 1 ab, wenn ein Fehler gefunden wird. Hinweise (⚠) brechen nicht ab.
 // Prüft: interne Links, je Seite Title/Description/H1/Canonical/lang/alt/Open Graph/JSON-LD/noindex,
+// Mehrsprachigkeit (hreflang gegenseitig, Sprachumschalter, keine deutschen Inhaltslinks auf englischen Seiten),
 // Sitemap, robots.txt, vercel.json, Redirect-Map, security.txt, llms.txt, IndexNow-Schlüssel.
 import { readdirSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 import {
-  ROOT, ORIGIN, PAGES, NOINDEX_WHITELIST, read, isFile, parseCsv, resolvePath,
+  ROOT, ORIGIN, PAGES, LANGS, DE_ONLY_TARGETS, NOINDEX_WHITELIST, read, isFile, parseCsv, resolvePath,
   decode, getTitle, getMeta, getCanonical, getJsonLd,
 } from './lib.mjs';
 
@@ -56,8 +57,10 @@ for (const [f, html] of sources) {
 const seen = { title: new Map(), desc: new Map() };
 let orgNode = null;
 const assetVersions = new Set();
-for (const [file, path] of PAGES) {
+const langOfPath = new Map(PAGES.filter(([, p]) => p).map(([, p, l]) => [p, l]));
+for (const [file, path, lang, twin] of PAGES) {
   const html = sources.get(file);
+  const L = LANGS[lang];
   const indexable = path !== null;
   const where = file;
   const title = getTitle(html);
@@ -65,7 +68,49 @@ for (const [file, path] of PAGES) {
   const robots = getMeta(html, 'name', 'robots');
   const canonical = getCanonical(html);
 
-  if (!/<html lang="de">/.test(html)) err(where, '<html lang="de"> fehlt');
+  if (!html.includes(`<html lang="${L.htmlLang}">`)) err(where, `<html lang="${L.htmlLang}"> fehlt`);
+  if (getMeta(html, 'property', 'og:locale') !== L.ogLocale) err(where, `og:locale ≠ ${L.ogLocale}`);
+
+  // Sprachumschalter: DE- und EN-Link auf dieselbe Seite in der anderen Sprache (sonst Startseite), aktuelle Sprache markiert
+  // (im Kopf als nav.lang „DE | EN“, im mobilen Menü als p.mnav__lang „Deutsch English“)
+  for (const [name, re] of [['Kopf', /<nav class="lang"[^>]*>([\s\S]*?)<\/nav>/], ['Menü', /<p class="mnav__lang">([\s\S]*?)<\/p>/]]) {
+    const sw = (html.match(re) || [])[1];
+    if (!sw) { err(where, `Sprachumschalter (${name}) fehlt`); continue; }
+    const self = path ?? '/';
+    const want = { de: lang === 'de' ? self : (twin ?? LANGS.de.home), en: lang === 'en' ? self : (twin ?? LANGS.en.home) };
+    for (const code of ['de', 'en']) {
+      const a = sw.match(new RegExp(`<a href="([^"]*)" hreflang="${code}" lang="${code}"( aria-current="true")?>`));
+      if (!a) err(where, `Sprachumschalter ${name}: ${code.toUpperCase()}-Link fehlt`);
+      else {
+        if (a[1] !== want[code]) err(where, `Sprachumschalter ${name}: ${code.toUpperCase()} zeigt auf ${a[1]} statt ${want[code]}`);
+        if (Boolean(a[2]) !== (code === lang)) err(where, `Sprachumschalter ${name}: aria-current bei ${code.toUpperCase()} falsch`);
+      }
+    }
+  }
+  if (sources.get(file).match(/navigator\.language|Accept-Language/)) err(where, 'keine automatische Sprachweiterleitung');
+
+  // Englische Seiten verlinken keine deutschen Inhaltsseiten (außer Rechtstexte/PDFs, die es nur deutsch gibt)
+  if (lang === 'en') {
+    const main = html.replace(/<nav class="lang"[\s\S]*?<\/nav>/, '').replace(/<p class="mnav__lang">[\s\S]*?<\/p>/, '');
+    for (const m of main.matchAll(/\shref="(\/[^"#?]*)/g)) {
+      const p = m[1] === '' ? '/' : m[1];
+      if (langOfPath.get(p) === 'de' && !DE_ONLY_TARGETS.some((t) => p.startsWith(t))) err(where, `englische Seite verlinkt deutsche Seite ${p}`);
+    }
+    for (const t of DE_ONLY_TARGETS.filter((t) => !t.endsWith('/'))) {
+      for (const m of main.matchAll(new RegExp(`<a href="${t}"([^>]*)>`, 'g'))) if (!m[1].includes('hreflang="de"')) err(where, `Link auf ${t} ohne hreflang="de"`);
+    }
+  }
+
+  // hreflang: nur bei Seiten mit Gegenstück, gegenseitig, inkl. x-default (= deutsche Fassung)
+  const alts = Object.fromEntries([...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)].map((m) => [m[1], m[2]]));
+  if (path && twin) {
+    const de = ORIGIN + (lang === 'de' ? path : twin);
+    const en = ORIGIN + (lang === 'en' ? path : twin);
+    if (alts.de !== de || alts.en !== en || alts['x-default'] !== de) err(where, `hreflang unvollständig oder falsch (erwartet de=${de}, en=${en}, x-default=${de})`);
+    const other = PAGES.find(([, p]) => p === twin);
+    if (!other) err(where, `Gegenstück ${twin} fehlt in PAGES`);
+    else if (other[3] !== path) err(where, `Gegenstück ${twin} verweist nicht zurück`);
+  } else if (Object.keys(alts).length) err(where, 'hreflang auf einer Seite ohne Gegenstück');
   if (!/<meta name="viewport" content="width=device-width, initial-scale=1">/.test(html)) err(where, 'Viewport-Meta fehlt');
   if (/<meta name="keywords"/.test(html)) err(where, 'meta keywords ist verboten');
   if (/http-equiv="refresh"/i.test(html)) err(where, 'Meta-Refresh ist verboten');
@@ -149,8 +194,9 @@ for (const [file, path] of PAGES) {
       if (page.url !== want) err(where, 'JSON-LD WebPage.url ≠ Canonical');
       if (page.name !== title) err(where, 'JSON-LD WebPage.name ≠ Title');
       if (page.description !== desc) err(where, 'JSON-LD WebPage.description ≠ Description');
+      if (page.inLanguage !== L.inLanguage) err(where, `JSON-LD WebPage.inLanguage ≠ ${L.inLanguage}`);
     }
-    if (path !== '/' && !graph.some((n) => n['@type'] === 'BreadcrumbList')) err(where, 'JSON-LD ohne BreadcrumbList');
+    if (path !== L.home && !graph.some((n) => n['@type'] === 'BreadcrumbList')) err(where, 'JSON-LD ohne BreadcrumbList');
     if (graph.some((n) => ['AggregateRating', 'Review', 'HowTo'].includes(n['@type']) || n.aggregateRating || n.review)) err(where, 'JSON-LD mit Bewertungen/HowTo ist nicht erlaubt');
   }
 }

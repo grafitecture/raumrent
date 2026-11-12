@@ -49,6 +49,12 @@ jobs:
             http://localhost:8081/impressum \
             http://localhost:8081/datenschutz \
             http://localhost:8081/404.html \
+            http://localhost:8081/en \
+            http://localhost:8081/en/office-containers \
+            http://localhost:8081/en/storage-and-shipping-containers \
+            http://localhost:8081/en/sanitary-containers \
+            http://localhost:8081/en/container-buildings \
+            http://localhost:8081/en/contact \
             --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
             --load-delay 2000 \
             --chromedriver-path "$CHROMEWEBDRIVER/chromedriver" \

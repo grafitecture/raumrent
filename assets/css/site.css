@@ -134,6 +134,13 @@ a:hover{color:var(--blue-deep)}
 .menu-btn .i-close,.menu-btn[aria-expanded="true"] .i-menu{display:none}
 .menu-btn[aria-expanded="true"] .i-close{display:block}
 .site-header .header-cta{display:none}
+/* Sprachumschalter DE | EN: Links auf dieselbe Seite in der anderen Sprache, keine automatische Weiterleitung */
+.lang{display:none;align-items:center;flex:none} /* unter 30em steht die Sprachwahl im Menü (.mnav__lang) */
+@media (min-width:30em){.site-header .lang{display:flex}}
+.lang a{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:2.25rem;height:2.75rem;padding-inline:.4em;font-size:var(--fs-small);font-weight:700;letter-spacing:.06em;color:var(--ink-soft);text-decoration:none}
+.lang a + a::before{content:"";position:absolute;left:0;top:50%;height:1.2em;transform:translateY(-50%);border-left:1px solid var(--line)}
+.lang a:hover{color:var(--blue)}
+.lang a[aria-current]{color:var(--blue);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.35em}
 @media (min-width:80em){
   .nav{display:block}
   .menu-btn,.header-call{display:none}
@@ -148,6 +155,9 @@ a:hover{color:var(--blue-deep)}
 .mnav li a[aria-current="page"]{color:var(--blue)}
 .mnav__contact .btn{justify-content:flex-start}
 .mnav__contact{display:grid;gap:var(--space-2xs)}
+.mnav__lang{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--space-s);margin:0;font-size:var(--fs-p);color:var(--ink-soft)}
+.mnav__lang a{display:inline-flex;align-items:center;min-height:2.75rem;font-weight:600;color:var(--ink);text-decoration:none}
+.mnav__lang a[aria-current]{color:var(--blue);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.35em}
 @media (min-width:80em){.mnav{display:none!important}}
 
 /* 6 ─ Bausteine */
@@ -344,6 +354,7 @@ a:hover{color:var(--blue-deep)}
 .notfound{padding-block:var(--space-2xl)}
 .notfound h1{font-size:var(--fs-h2)}
 .notfound .actions{margin-top:var(--space-l)}
+.notfound__en{margin-top:var(--space-xl);padding-top:var(--space-l);border-top:1px solid var(--line)}
 
 /* 12 ─ Bewegung: ein Moment – der Aufkleber wird aufgesetzt */
 @media (prefers-reduced-motion:no-preference){

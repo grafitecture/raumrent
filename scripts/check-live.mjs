@@ -38,11 +38,18 @@ if (IS_PROD) {
 }
 check(home.text.includes('Ihr zuverlässiger Partner für die Vermietung'), 'Kerntext der Startseite im HTML (ohne JavaScript)');
 check(home.text.includes('application/ld+json'), 'JSON-LD im HTML');
+const homeEn = await get('/en');
+check(homeEn.status === 200 && homeEn.text.includes('Your reliable partner for renting and buying containers'), 'Englische Startseite /en mit Kerntext im HTML');
+check(!home.h.has('vary') || !/accept-language/i.test(home.h.get('vary')), 'keine Sprachweiterleitung nach Accept-Language');
+const deForEn = await fetch(new URL('/', BASE), { redirect: 'manual', headers: { ...baseHeaders, 'accept-language': 'en-GB,en;q=0.9' } });
+check(deForEn.status === 200, `/ mit Accept-Language en → ${deForEn.status} (keine automatische Weiterleitung)`);
 
 // 2 Alle Seiten der Sitemap: 200, Canonical, nicht noindex
-for (const [file, path] of PAGES) {
+for (const [file, path, lang, twin] of PAGES) {
   if (!path) continue;
   const r = await get(path);
+  check(r.text.includes(`<html lang="${lang}">`), `${path}: <html lang="${lang}">`);
+  if (twin) check(r.text.includes(`hreflang="${lang === 'de' ? 'en' : 'de'}" href="${ORIGIN}${twin}"`), `${path}: hreflang auf ${twin}`);
   check(r.status === 200, `${path} → ${r.status}`);
   check(getCanonical(r.text) === ORIGIN + path, `${path}: Canonical ${getCanonical(r.text)}`);
   check(getTitle(r.text) === getTitle(read(file)), `${path}: ausgelieferter Title = Repo`);

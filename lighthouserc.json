@@ -11,7 +11,13 @@
         "http://localhost:8080/containeranlagen",
         "http://localhost:8080/kontakt",
         "http://localhost:8080/impressum",
-        "http://localhost:8080/datenschutz"
+        "http://localhost:8080/datenschutz",
+        "http://localhost:8080/en",
+        "http://localhost:8080/en/office-containers",
+        "http://localhost:8080/en/storage-and-shipping-containers",
+        "http://localhost:8080/en/sanitary-containers",
+        "http://localhost:8080/en/container-buildings",
+        "http://localhost:8080/en/contact"
       ],
       "numberOfRuns": 3
     },

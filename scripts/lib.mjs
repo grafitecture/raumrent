@@ -6,18 +6,33 @@ import { fileURLToPath } from 'node:url';
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const ORIGIN = 'https://www.raumrent.de';
 
-// Alle HTML-Seiten der Website: Pfad im Repo → öffentliche Adresse
+// Alle HTML-Seiten der Website: [Datei im Repo, öffentliche Adresse, Sprache, Gegenstück in der anderen Sprache]
+// Adresse null = nicht indexierbar. Gegenstück null = Seite gibt es nur in dieser Sprache.
 export const PAGES = [
-  ['index.html', '/'],
-  ['buerocontainer/index.html', '/buerocontainer'],
-  ['lager-und-seecontainer/index.html', '/lager-und-seecontainer'],
-  ['sanitaercontainer/index.html', '/sanitaercontainer'],
-  ['containeranlagen/index.html', '/containeranlagen'],
-  ['kontakt/index.html', '/kontakt'],
-  ['impressum/index.html', '/impressum'],
-  ['datenschutz/index.html', '/datenschutz'],
-  ['404.html', null], // nicht indexierbar
+  ['index.html', '/', 'de', '/en'],
+  ['buerocontainer/index.html', '/buerocontainer', 'de', '/en/office-containers'],
+  ['lager-und-seecontainer/index.html', '/lager-und-seecontainer', 'de', '/en/storage-and-shipping-containers'],
+  ['sanitaercontainer/index.html', '/sanitaercontainer', 'de', '/en/sanitary-containers'],
+  ['containeranlagen/index.html', '/containeranlagen', 'de', '/en/container-buildings'],
+  ['kontakt/index.html', '/kontakt', 'de', '/en/contact'],
+  ['impressum/index.html', '/impressum', 'de', null],
+  ['datenschutz/index.html', '/datenschutz', 'de', null],
+  ['en/index.html', '/en', 'en', '/'],
+  ['en/office-containers/index.html', '/en/office-containers', 'en', '/buerocontainer'],
+  ['en/storage-and-shipping-containers/index.html', '/en/storage-and-shipping-containers', 'en', '/lager-und-seecontainer'],
+  ['en/sanitary-containers/index.html', '/en/sanitary-containers', 'en', '/sanitaercontainer'],
+  ['en/container-buildings/index.html', '/en/container-buildings', 'en', '/containeranlagen'],
+  ['en/contact/index.html', '/en/contact', 'en', '/kontakt'],
+  ['404.html', null, 'de', null], // nicht indexierbar, zweisprachig
 ];
+
+// Sprachen: Kennung im HTML (lang), Open-Graph-Locale, Startseite
+export const LANGS = {
+  de: { htmlLang: 'de', ogLocale: 'de_DE', inLanguage: 'de-DE', home: '/' },
+  en: { htmlLang: 'en', ogLocale: 'en_GB', inLanguage: 'en-GB', home: '/en' },
+};
+// Deutsche Seiten, auf die englische Seiten bewusst verlinken dürfen (gibt es nur auf Deutsch)
+export const DE_ONLY_TARGETS = ['/impressum', '/datenschutz', '/downloads/'];
 
 // Seiten, die bewusst noindex tragen dürfen
 export const NOINDEX_WHITELIST = ['404.html'];

@@ -6,6 +6,7 @@
 //   Zurück-Taste und Direktlinks wie …/artifact/<id>#kontakt funktionieren
 // - CSS, JavaScript, Schrift (Noto Sans, latin) und Bilder (WebP, je Motiv einmal) eingebettet
 // - PDFs zeigen auf die öffentlichen Adressen der bisherigen Seite (Chrome zeigt PDFs im Artifact-Rahmen nicht an)
+// - nur die deutschen Seiten; der EN-Link im Sprachumschalter öffnet die englische Live-Seite in neuem Fenster
 // - schmaler Hinweis „Vorschau der neuen Website · Stand <Datum>“ über der Kopfzeile
 // Die Website selbst bleibt unverändert.
 //
@@ -57,7 +58,7 @@ function vorschau() {
 
   const mains = [...document.querySelectorAll('main[data-route]')];
   const routes = new Map(mains.map((m) => [m.dataset.route, m]));
-  const navLinks = [...document.querySelectorAll('.site-header nav a, .site-header .header-cta, .mnav nav a, .site-footer ul a')];
+  const navLinks = [...document.querySelectorAll('.site-header nav:not(.lang) a, .site-header .header-cta, .mnav nav a, .site-footer ul a')];
   const skip = document.querySelector('.skip-link');
   let current = '';
 
@@ -157,6 +158,7 @@ let body = [
 // Links: PDFs nach außen, Seiten auf Anker
 body = body
   .replace(/href="\/downloads\/([^"]+\.pdf)"/g, `href="${PDF_BASE}$1" target="_blank" rel="noopener"`)
+  .replace(/href="\/en((?:\/[a-z-]+)?)"/g, 'href="https://www.raumrent.de/en$1" target="_blank" rel="noopener"')
   .replace(/href="\/(#[^"]*)?"/g, (m, hash) => `href="${hash || '#start'}"`)
   .replace(/href="\/([a-z-]+)(\?[^"#]*)?(#[^"]*)?"/g, (m, slug, query = '', hash = '') => {
     if (!Object.hasOwn(ROUTES, slug)) return m;

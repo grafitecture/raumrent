@@ -11,7 +11,8 @@ Quelle: GitHub `grafitecture/raumrent` · Hosting: Vercel · Pflege: per Prompt 
 | `buerocontainer/`, `lager-und-seecontainer/`, `sanitaercontainer/`, `containeranlagen/` | Unterseiten der Containerarten (Texte von Manuel Loth, Mails vom 18.07.2025) |
 | `kontakt/` | Anfrage mit Fragebogen und Ansprechpartner |
 | `impressum/`, `datenschutz/` | Rechtstexte (Wortlaut der alten Seite, Impressum ergänzt um Verbraucherstreitbeilegung) |
-| `404.html` | Seite für unbekannte Adressen |
+| `en/` | Englische Fassung (seit 12.11.2026): `en/`, `en/office-containers/`, `en/storage-and-shipping-containers/`, `en/sanitary-containers/`, `en/container-buildings/`, `en/contact/` – siehe [Sprachen](#sprachen) |
+| `404.html` | Seite für unbekannte Adressen (deutsch und englisch) |
 | `assets/css/site.css` | Gestaltung für alle Seiten, Design-Tokens am Anfang |
 | `assets/js/site.js` | Menü, Kopfzeile, Anfrage-Formular, Jahreszahl |
 | `assets/img/` | Bilder als AVIF und WebP in mehreren Breiten (erzeugt, siehe [Bilder](#bilder)) |
@@ -29,9 +30,9 @@ Quelle: GitHub `grafitecture/raumrent` · Hosting: Vercel · Pflege: per Prompt 
 
 ## Gemeinsame Teile
 
-Kopfzeile, mobiles Menü, Fuß und das SVG-Sprite (Logo und Symbole) stehen in **allen neun** HTML-Dateien.
+Kopfzeile, mobiles Menü, Fuß und das SVG-Sprite (Logo und Symbole) stehen in **allen 15** HTML-Dateien: 9 deutsche (inkl. `404.html`) und 6 englische unter `en/`. Die englischen haben dieselben Bausteine mit englischen Texten.
 Wer dort etwas ändert, ändert es überall – mit Claude Code reicht ein Prompt wie
-„Ergänze im Fuß aller Seiten …“.
+„Ergänze im Fuß aller Seiten (deutsch und englisch) …“.
 
 Links beginnen mit `/` (z. B. `/kontakt`), damit sie auf jeder Seite gleich funktionieren.
 
@@ -83,7 +84,7 @@ Container immer als: *light grey corrugated steel wall panels, steel frames and 
 
 **Seit 20.10.2026 sind alle Container einheitlich grau** (vorher blaue Rahmen und teils blaue Seecontainer). Die 17 Motive der Website wurden dafür nicht neu erzeugt, sondern mit Higgsfield umgefärbt (Nano Banana 2.1, Bildbearbeitung mit dem bisherigen Bild als Referenz). Danach wurden nur die umgefärbten Containerteile ins Original übernommen, alles andere ist pixelgleich geblieben. Die neuen Dateien heißen `<name>-grau`. Die blauen Fassungen liegen in der Git-Historie (bis Commit 733ac62). `tools/originals/spezialcontainer.jpg` wird auf der Seite nicht verwendet und ist noch blau.
 
-**Vorschaubild für Links** (`assets/img/og-raumrent-2.jpg`, 1200 × 630 px, für `og:image`): Vorlage `tools/og-bild.html` (Ausschnitt aus `hero-grau.jpg`, blauer Aufkleber mit Claim, Schild „raumrent.de“). Datei in Chromium bei 1200 × 630 fotografieren und als JPEG (Qualität 86) unter neuem Namen speichern, dann `og:image` in allen 9 HTML-Dateien und `image` im JSON-LD der Startseite anpassen.
+**Vorschaubild für Links** (`assets/img/og-raumrent-2.jpg`, 1200 × 630 px, für `og:image`): Vorlage `tools/og-bild.html` (Ausschnitt aus `hero-grau.jpg`, blauer Aufkleber mit Claim, Schild „raumrent.de“). Datei in Chromium bei 1200 × 630 fotografieren und als JPEG (Qualität 86) unter neuem Namen speichern, dann `og:image` in den 9 deutschen HTML-Dateien und `image` im JSON-LD (Knoten `#organization`, alle 14 Seiten) anpassen. Für die englischen Seiten gibt es `tools/og-bild-en.html` → `assets/img/og-raumrent-en.jpg`.
 
 **Neues Bild einbinden**
 
@@ -116,12 +117,36 @@ Dann http://localhost:8000 öffnen.
 
 Nach Änderungen an `site.css` oder `site.js` die Versionsnummer `?v=1` in allen HTML-Dateien hochzählen, damit Browser sofort die neue Fassung laden.
 
+## Sprachen
+
+Die Website ist deutsch (Hauptsprache, ohne Präfix) und englisch (unter `/en`, britisches Englisch). Umgesetzt nach der bewährten Art, die Google und das W3C empfehlen:
+
+- **Eigene Adresse je Sprache** mit sprechenden englischen Adressen; keine Umschaltung per Cookie oder JavaScript.
+- **Sprachumschalter** im Kopf („DE | EN“, ab 30em) und im mobilen Menü („Deutsch / English“). Er führt immer auf **dieselbe Seite** in der anderen Sprache, die aktuelle Sprache ist markiert (`aria-current`). Links tragen `hreflang` und `lang`.
+- **Keine automatische Weiterleitung** nach Browsersprache oder Standort – Besucher und Crawler sehen immer die Adresse, die sie aufrufen.
+- **hreflang** im `<head>` jeder Seite mit Gegenstück (`de`, `en`, `x-default` = deutsch) und zusätzlich in `sitemap.xml`. `<html lang>`, `og:locale` und `inLanguage` im JSON-LD passen zur Sprache.
+- **Impressum und Datenschutz** gibt es nur auf Deutsch (rechtlich maßgeblich). Englische Seiten verlinken sie als „Legal notice (German)“ und „Privacy policy (German)“, die PDFs als „(German)“. Der Sprachumschalter führt dort auf die englische Startseite.
+- **Claim** auf Englisch: „flexible & temporary“ (Aufkleber, Fuß, Vorschaubild `assets/img/og-raumrent-en.jpg`, Vorlage `tools/og-bild-en.html`). Im JSON-LD bleibt `slogan` deutsch, weil der Firmen-Knoten auf allen Seiten gleich ist.
+- **Anfrage-Formular:** `site.js` nimmt Fehlermeldung, Betreff und Beschriftungen der E-Mail aus der Seitensprache (`<html lang>`); englische Anfragen beginnen mit „Enquiry via raumrent.de (English page)“.
+
+| Deutsch | Englisch |
+|---|---|
+| `/` | `/en` |
+| `/buerocontainer` | `/en/office-containers` |
+| `/lager-und-seecontainer` | `/en/storage-and-shipping-containers` |
+| `/sanitaercontainer` | `/en/sanitary-containers` |
+| `/containeranlagen` | `/en/container-buildings` |
+| `/kontakt` | `/en/contact` |
+| `/impressum`, `/datenschutz` | – (nur deutsch) |
+
+Die Paare stehen in `PAGES` in `scripts/lib.mjs`; `npm run seo:check` prüft hreflang (gegenseitig), Sprachumschalter, `lang`, `og:locale` und dass englische Seiten keine deutschen Inhaltsseiten verlinken. Die Übersetzungen stammen von Claude (12.11.2026) und sollten von raumrent gegengelesen werden. **Ändert sich ein deutscher Text, die englische Seite mit ändern** (und umgekehrt).
+
 ## Vorschau in der Claude-Seitenleiste
 
 Neben der Live-Seite gibt es eine Vorschau als Artifact in claude.ai. Sie ist in der Seitenleiste angeheftet und zum Teilen mit dem Kunden gedacht:
 https://claude.ai/artifact/QXTXUck9XYCFmckxJEQVko
 
-`node tools/vorschau.mjs` baut daraus **eine** Datei `tools/vorschau/index.html` (nicht im Git). Sie enthält alle acht Seiten, umgeschaltet über Anker (`#buerocontainer`, `#kontakt` …). CSS, JavaScript, Schrift und Bilder sind eingebettet (WebP, je Motiv einmal). Oben steht ein schmaler Hinweis „Vorschau der neuen Website · Stand …“. Nur eine einzelne Seite lässt sich öffentlich teilen: Die erste Fassung aus 130 Einzeldateien konnte nicht für die öffentliche Freigabe geprüft werden. Claude veröffentlicht die Datei unter derselben Adresse (Ablauf in `CLAUDE.md`).
+`node tools/vorschau.mjs` baut daraus **eine** Datei `tools/vorschau/index.html` (nicht im Git). Sie enthält die acht deutschen Seiten, umgeschaltet über Anker; der EN-Link im Sprachumschalter öffnet die englische Live-Seite in einem neuen Tab (`#buerocontainer`, `#kontakt` …). CSS, JavaScript, Schrift und Bilder sind eingebettet (WebP, je Motiv einmal). Oben steht ein schmaler Hinweis „Vorschau der neuen Website · Stand …“. Nur eine einzelne Seite lässt sich öffentlich teilen: Die erste Fassung aus 130 Einzeldateien konnte nicht für die öffentliche Freigabe geprüft werden. Claude veröffentlicht die Datei unter derselben Adresse (Ablauf in `CLAUDE.md`).
 Die PDFs öffnet die Vorschau über ihre bisherigen öffentlichen Adressen in einem neuen Tab, weil Chrome PDFs im Artifact-Rahmen nicht anzeigt. Telefon- und Mail-Links und das Mailprogramm beim Absenden des Formulars öffnen sich in der Vorschau nicht immer. Der Anfragetext zum Kopieren erscheint trotzdem.
 
 **Teilen:** Artifact öffnen → *Teilen* → unter *Geteilte Version* die neueste Version wählen → öffentlichen Link kopieren. Nach jeder neuen Version dort die Version wechseln, sonst sieht der Kunde die alte.
@@ -158,7 +183,7 @@ Berichte: `seo/AUDIT.md` (Ist-Stand 05.11.2026), `seo/REPORT.md` (Ergebnis), `se
 
 ## Anfrage-Formular
 
-Das Formular auf `/kontakt` braucht keinen Server: Beim Absenden öffnet sich das E-Mail-Programm mit allen Angaben als Nachricht an `manuel.loth@raumrent.de`. Öffnet sich keines, erscheint der Text zum Kopieren. Die Website speichert und verschickt selbst keine Daten und setzt keine Cookies – ein Cookie-Banner ist deshalb nicht nötig, solange kein Tracking ergänzt wird.
+Das Formular auf `/kontakt` und `/en/contact` braucht keinen Server: Beim Absenden öffnet sich das E-Mail-Programm mit allen Angaben als Nachricht an `manuel.loth@raumrent.de`. Öffnet sich keines, erscheint der Text zum Kopieren. Die Website speichert und verschickt selbst keine Daten und setzt keine Cookies – ein Cookie-Banner ist deshalb nicht nötig, solange kein Tracking ergänzt wird.
 
 ## Offene Punkte (vor dem Livegang klären)
 

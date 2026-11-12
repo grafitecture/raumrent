@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.raumrent.de/</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://www.raumrent.de/buerocontainer</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://www.raumrent.de/lager-und-seecontainer</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://www.raumrent.de/sanitaercontainer</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://www.raumrent.de/containeranlagen</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://www.raumrent.de/kontakt</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://www.raumrent.de/impressum</loc><lastmod>2026-11-05</lastmod></url>
-  <url><loc>https://www.raumrent.de/datenschutz</loc><lastmod>2026-11-05</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://www.raumrent.de/</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/"/>
+  </url>
+  <url><loc>https://www.raumrent.de/buerocontainer</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/buerocontainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/office-containers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/buerocontainer"/>
+  </url>
+  <url><loc>https://www.raumrent.de/lager-und-seecontainer</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/lager-und-seecontainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/storage-and-shipping-containers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/lager-und-seecontainer"/>
+  </url>
+  <url><loc>https://www.raumrent.de/sanitaercontainer</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/sanitaercontainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/sanitary-containers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/sanitaercontainer"/>
+  </url>
+  <url><loc>https://www.raumrent.de/containeranlagen</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/containeranlagen"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/container-buildings"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/containeranlagen"/>
+  </url>
+  <url><loc>https://www.raumrent.de/kontakt</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/kontakt"/>
+  </url>
+  <url><loc>https://www.raumrent.de/impressum</loc><lastmod>2026-11-12</lastmod>
+  </url>
+  <url><loc>https://www.raumrent.de/datenschutz</loc><lastmod>2026-11-12</lastmod>
+  </url>
+  <url><loc>https://www.raumrent.de/en</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/"/>
+  </url>
+  <url><loc>https://www.raumrent.de/en/office-containers</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/buerocontainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/office-containers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/buerocontainer"/>
+  </url>
+  <url><loc>https://www.raumrent.de/en/storage-and-shipping-containers</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/lager-und-seecontainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/storage-and-shipping-containers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/lager-und-seecontainer"/>
+  </url>
+  <url><loc>https://www.raumrent.de/en/sanitary-containers</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/sanitaercontainer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/sanitary-containers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/sanitaercontainer"/>
+  </url>
+  <url><loc>https://www.raumrent.de/en/container-buildings</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/containeranlagen"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/container-buildings"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/containeranlagen"/>
+  </url>
+  <url><loc>https://www.raumrent.de/en/contact</loc><lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.raumrent.de/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.raumrent.de/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.raumrent.de/kontakt"/>
+  </url>
 </urlset>

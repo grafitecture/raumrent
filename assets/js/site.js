@@ -1,7 +1,7 @@
 /* raumrent.de – Funktionen für alle Seiten
    1 Kopfzeile: Linie beim Scrollen
    2 Mobiles Menü
-   3 Anfrage-Formular: bereitet eine E-Mail an raumrent vor (kein Server)
+   3 Anfrage-Formular: bereitet eine E-Mail an raumrent vor (kein Server), Texte je nach Seitensprache (de/en)
    4 Jahreszahl im Fuß */
 (() => {
   'use strict';
@@ -34,6 +34,23 @@
   // 3 Anfrage-Formular
   const form = document.getElementById('anfrage');
   if (form) {
+    const T = {
+      de: {
+        pick: 'Bitte mindestens eine Containerart auswählen.',
+        head: 'Anfrage über raumrent.de', interest: 'Interesse an', art: 'Mieten oder kaufen', message: 'Nachricht',
+        firma: 'Firma', name: 'Name', strasse: 'Straße / Hausnr.', ort: 'PLZ / Ort', telefon: 'Telefon', email: 'E-Mail',
+        subject: 'Anfrage', to: 'An', subj: 'Betreff', copied: 'Anfrage kopiert',
+        select: 'Text markiert – mit Strg/Cmd + C kopieren',
+      },
+      en: {
+        pick: 'Please select at least one container type.',
+        head: 'Enquiry via raumrent.de (English page)', interest: 'Interested in', art: 'Rent or buy', message: 'Message',
+        firma: 'Company', name: 'Name', strasse: 'Street / No.', ort: 'Postcode / Town', telefon: 'Phone', email: 'Email',
+        subject: 'Enquiry', to: 'To', subj: 'Subject', copied: 'Enquiry copied',
+        select: 'Text selected – copy with Ctrl/Cmd + C',
+      },
+    };
+    const t = T[(document.documentElement.lang || 'de').slice(0, 2)] || T.de;
     const to = form.dataset.to;
     const error = form.querySelector('.form__error');
     const fallback = document.getElementById('anfrage-fallback');
@@ -53,7 +70,7 @@
       e.preventDefault();
       const interests = [...form.querySelectorAll('input[name="interesse"]:checked')].map((i) => i.value);
       if (!interests.length) {
-        error.textContent = 'Bitte mindestens eine Containerart auswählen.';
+        error.textContent = t.pick;
         form.querySelector('input[name="interesse"]').focus();
         return;
       }
@@ -61,26 +78,26 @@
       error.textContent = '';
 
       const lines = [
-        'Anfrage über raumrent.de',
+        t.head,
         '',
-        'Interesse an: ' + interests.join(', '),
-        'Mieten oder kaufen: ' + (value('art') || '–'),
+        `${t.interest}: ${interests.join(', ')}`,
+        `${t.art}: ${value('art') || '–'}`,
         '',
-        'Nachricht:',
+        `${t.message}:`,
         value('nachricht') || '–',
         '',
-        'Firma: ' + (value('firma') || '–'),
-        'Name: ' + value('name'),
-        'Straße / Hausnr.: ' + (value('strasse') || '–'),
-        'PLZ / Ort: ' + (value('ort') || '–'),
-        'Telefon: ' + value('telefon'),
-        'E-Mail: ' + value('email'),
+        `${t.firma}: ${value('firma') || '–'}`,
+        `${t.name}: ${value('name')}`,
+        `${t.strasse}: ${value('strasse') || '–'}`,
+        `${t.ort}: ${value('ort') || '–'}`,
+        `${t.telefon}: ${value('telefon')}`,
+        `${t.email}: ${value('email')}`,
       ];
       const body = lines.join('\n');
-      const subject = 'Anfrage: ' + interests.join(', ');
+      const subject = `${t.subject}: ${interests.join(', ')}`;
       const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-      if (preview) preview.textContent = `An: ${to}\nBetreff: ${subject}\n\n${body}`;
+      if (preview) preview.textContent = `${t.to}: ${to}\n${t.subj}: ${subject}\n\n${body}`;
       if (fallback) fallback.hidden = false;
       window.location.href = href;
     });
@@ -89,14 +106,14 @@
       copyBtn.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(preview.textContent);
-          copyBtn.textContent = 'Anfrage kopiert';
+          copyBtn.textContent = t.copied;
         } catch {
           const range = document.createRange();
           range.selectNodeContents(preview);
           const sel = window.getSelection();
           sel.removeAllRanges();
           sel.addRange(range);
-          copyBtn.textContent = 'Text markiert – mit Strg/Cmd + C kopieren';
+          copyBtn.textContent = t.select;
         }
       });
     }

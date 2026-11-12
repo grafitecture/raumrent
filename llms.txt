@@ -15,6 +15,17 @@ Miete für kurzfristige Projekte oder Kauf für dauerhafte Nutzung. Einsatz auf 
 
 - [Kontakt](https://www.raumrent.de/kontakt): Anfrage mit Containerart, Miete oder Kauf und Kontaktdaten
 
+## English
+
+The website is also available in English (legal notice and privacy policy in German only).
+
+- [Home](https://www.raumrent.de/en): rental and sale of containers and mobile room systems
+- [Office containers](https://www.raumrent.de/en/office-containers): site offices, temporary administrative space and office extensions, to rent or buy
+- [Storage & shipping containers](https://www.raumrent.de/en/storage-and-shipping-containers): wind- and watertight, lockable containers in 10 ft and 20 ft
+- [Sanitary containers](https://www.raumrent.de/en/sanitary-containers): toilet, shower and accessible solutions, ready to connect or with a holding tank
+- [Container buildings](https://www.raumrent.de/en/container-buildings): individually planned, turnkey buildings made of connected modules
+- [Contact](https://www.raumrent.de/en/contact): enquiry form, Manuel Loth (Authorised Signatory & Head of Sales)
+
 ## Optional
 
 - [Allgemeine Mietbedingungen (PDF)](https://www.raumrent.de/downloads/RAUMRENT_AMB.pdf)
